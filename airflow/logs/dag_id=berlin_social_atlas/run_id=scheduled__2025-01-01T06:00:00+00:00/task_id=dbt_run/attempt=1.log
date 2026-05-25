@@ -1,0 +1,115 @@
+[2026-05-24T15:58:13.563+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-24T15:58:13.590+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: berlin_social_atlas.dbt_run scheduled__2025-01-01T06:00:00+00:00 [queued]>
+[2026-05-24T15:58:13.597+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: berlin_social_atlas.dbt_run scheduled__2025-01-01T06:00:00+00:00 [queued]>
+[2026-05-24T15:58:13.598+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-05-24T15:58:13.608+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_run> on 2025-01-01 06:00:00+00:00
+[2026-05-24T15:58:13.613+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=291) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-24T15:58:13.614+0000] {standard_task_runner.py:63} INFO - Started process 296 to run task
+[2026-05-24T15:58:13.613+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'berlin_social_atlas', 'dbt_run', 'scheduled__2025-01-01T06:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/berlin_mss_pipeline.py', '--cfg-path', '/tmp/tmppprazh27']
+[2026-05-24T15:58:13.615+0000] {standard_task_runner.py:91} INFO - Job 5: Subtask dbt_run
+[2026-05-24T15:58:13.663+0000] {task_command.py:426} INFO - Running <TaskInstance: berlin_social_atlas.dbt_run scheduled__2025-01-01T06:00:00+00:00 [running]> on host 37cfe4649e81
+[2026-05-24T15:58:13.729+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='berlin_social_atlas' AIRFLOW_CTX_TASK_ID='dbt_run' AIRFLOW_CTX_EXECUTION_DATE='2025-01-01T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-01T06:00:00+00:00'
+[2026-05-24T15:58:13.730+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-24T15:58:13.738+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-05-24T15:58:13.739+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/dbt && dbt run --profiles-dir .']
+[2026-05-24T15:58:13.744+0000] {subprocess.py:86} INFO - Output:
+[2026-05-24T15:58:13.745+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 1: cd: /opt/***/dbt: No such file or directory
+[2026-05-24T15:58:13.745+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2026-05-24T15:58:13.746+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-24T15:58:13.755+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-05-24T15:58:13.758+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=berlin_social_atlas, task_id=dbt_run, run_id=scheduled__2025-01-01T06:00:00+00:00, execution_date=20250101T060000, start_date=20260524T155813, end_date=20260524T155813
+[2026-05-24T15:58:13.767+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 5 for task dbt_run (Bash command failed. The command returned a non-zero exit code 1.; 296)
+[2026-05-24T15:58:13.795+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-05-24T15:58:13.817+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-24T15:58:13.818+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-24T16:05:36.118+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-24T16:05:36.148+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: berlin_social_atlas.dbt_run scheduled__2025-01-01T06:00:00+00:00 [queued]>
+[2026-05-24T16:05:36.156+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: berlin_social_atlas.dbt_run scheduled__2025-01-01T06:00:00+00:00 [queued]>
+[2026-05-24T16:05:36.157+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-05-24T16:05:36.168+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_run> on 2025-01-01 06:00:00+00:00
+[2026-05-24T16:05:36.172+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=198) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-24T16:05:36.173+0000] {standard_task_runner.py:63} INFO - Started process 201 to run task
+[2026-05-24T16:05:36.173+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'berlin_social_atlas', 'dbt_run', 'scheduled__2025-01-01T06:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/berlin_mss_pipeline.py', '--cfg-path', '/tmp/tmpfz87s__v']
+[2026-05-24T16:05:36.174+0000] {standard_task_runner.py:91} INFO - Job 4: Subtask dbt_run
+[2026-05-24T16:05:36.215+0000] {task_command.py:426} INFO - Running <TaskInstance: berlin_social_atlas.dbt_run scheduled__2025-01-01T06:00:00+00:00 [running]> on host b116661fb8f9
+[2026-05-24T16:05:36.276+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='berlin_social_atlas' AIRFLOW_CTX_TASK_ID='dbt_run' AIRFLOW_CTX_EXECUTION_DATE='2025-01-01T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-01T06:00:00+00:00'
+[2026-05-24T16:05:36.276+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-24T16:05:36.285+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-05-24T16:05:36.285+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/dbt && dbt run --profiles-dir .']
+[2026-05-24T16:05:36.290+0000] {subprocess.py:86} INFO - Output:
+[2026-05-24T16:05:36.293+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 1: dbt: command not found
+[2026-05-24T16:05:36.293+0000] {subprocess.py:97} INFO - Command exited with return code 127
+[2026-05-24T16:05:36.293+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-24T16:05:36.303+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2026-05-24T16:05:36.306+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=berlin_social_atlas, task_id=dbt_run, run_id=scheduled__2025-01-01T06:00:00+00:00, execution_date=20250101T060000, start_date=20260524T160536, end_date=20260524T160536
+[2026-05-24T16:05:36.316+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 4 for task dbt_run (Bash command failed. The command returned a non-zero exit code 127.; 201)
+[2026-05-24T16:05:36.355+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-05-24T16:05:36.380+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-24T16:05:36.381+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-24T16:29:26.073+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-24T16:29:26.101+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: berlin_social_atlas.dbt_run scheduled__2025-01-01T06:00:00+00:00 [queued]>
+[2026-05-24T16:29:26.109+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: berlin_social_atlas.dbt_run scheduled__2025-01-01T06:00:00+00:00 [queued]>
+[2026-05-24T16:29:26.110+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-05-24T16:29:26.122+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_run> on 2025-01-01 06:00:00+00:00
+[2026-05-24T16:29:26.128+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=251) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-24T16:29:26.128+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'berlin_social_atlas', 'dbt_run', 'scheduled__2025-01-01T06:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/berlin_mss_pipeline.py', '--cfg-path', '/tmp/tmpitgflire']
+[2026-05-24T16:29:26.130+0000] {standard_task_runner.py:63} INFO - Started process 252 to run task
+[2026-05-24T16:29:26.130+0000] {standard_task_runner.py:91} INFO - Job 4: Subtask dbt_run
+[2026-05-24T16:29:26.173+0000] {task_command.py:426} INFO - Running <TaskInstance: berlin_social_atlas.dbt_run scheduled__2025-01-01T06:00:00+00:00 [running]> on host f33b7c2b37fa
+[2026-05-24T16:29:26.246+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='berlin_social_atlas' AIRFLOW_CTX_TASK_ID='dbt_run' AIRFLOW_CTX_EXECUTION_DATE='2025-01-01T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-01T06:00:00+00:00'
+[2026-05-24T16:29:26.247+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-24T16:29:26.256+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-05-24T16:29:26.257+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/dbt && dbt run --profiles-dir .']
+[2026-05-24T16:29:26.262+0000] {subprocess.py:86} INFO - Output:
+[2026-05-24T16:29:29.072+0000] {subprocess.py:93} INFO - [0m16:29:29  Running with dbt=1.12.0-b1
+[2026-05-24T16:29:29.394+0000] {subprocess.py:93} INFO - [0m16:29:29  Registered adapter: postgres=1.10.0
+[2026-05-24T16:29:29.459+0000] {subprocess.py:93} INFO - [0m16:29:29  [[31mERROR[0m]: Encountered an error:
+[2026-05-24T16:29:29.460+0000] {subprocess.py:93} INFO - Compilation Error
+[2026-05-24T16:29:29.460+0000] {subprocess.py:93} INFO -   dbt expects 1 package(s) based on packages specified in packages.yml, but found only 0 package(s) installed in dbt_packages. Run "dbt deps" to install package dependencies.
+[2026-05-24T16:29:30.310+0000] {subprocess.py:97} INFO - Command exited with return code 2
+[2026-05-24T16:29:30.311+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-24T16:29:30.325+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2026-05-24T16:29:30.331+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=berlin_social_atlas, task_id=dbt_run, run_id=scheduled__2025-01-01T06:00:00+00:00, execution_date=20250101T060000, start_date=20260524T162926, end_date=20260524T162930
+[2026-05-24T16:29:30.341+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 4 for task dbt_run (Bash command failed. The command returned a non-zero exit code 2.; 252)
+[2026-05-24T16:29:30.367+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-05-24T16:29:30.389+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-24T16:29:30.390+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

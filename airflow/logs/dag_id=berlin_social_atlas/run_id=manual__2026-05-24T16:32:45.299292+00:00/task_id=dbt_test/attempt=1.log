@@ -1,0 +1,57 @@
+[2026-05-24T16:38:07.195+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-24T16:38:07.219+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: berlin_social_atlas.dbt_test manual__2026-05-24T16:32:45.299292+00:00 [queued]>
+[2026-05-24T16:38:07.224+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: berlin_social_atlas.dbt_test manual__2026-05-24T16:32:45.299292+00:00 [queued]>
+[2026-05-24T16:38:07.224+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-05-24T16:38:07.232+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_test> on 2026-05-24 16:32:45.299292+00:00
+[2026-05-24T16:38:07.236+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=430) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-24T16:38:07.237+0000] {standard_task_runner.py:63} INFO - Started process 431 to run task
+[2026-05-24T16:38:07.236+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'berlin_social_atlas', 'dbt_test', 'manual__2026-05-24T16:32:45.299292+00:00', '--job-id', '14', '--raw', '--subdir', 'DAGS_FOLDER/berlin_mss_pipeline.py', '--cfg-path', '/tmp/tmp699h01dy']
+[2026-05-24T16:38:07.237+0000] {standard_task_runner.py:91} INFO - Job 14: Subtask dbt_test
+[2026-05-24T16:38:07.275+0000] {task_command.py:426} INFO - Running <TaskInstance: berlin_social_atlas.dbt_test manual__2026-05-24T16:32:45.299292+00:00 [running]> on host f33b7c2b37fa
+[2026-05-24T16:38:07.337+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='berlin_social_atlas' AIRFLOW_CTX_TASK_ID='dbt_test' AIRFLOW_CTX_EXECUTION_DATE='2026-05-24T16:32:45.299292+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-24T16:32:45.299292+00:00'
+[2026-05-24T16:38:07.338+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-24T16:38:07.346+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-05-24T16:38:07.347+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/dbt && dbt test --profiles-dir .']
+[2026-05-24T16:38:07.353+0000] {subprocess.py:86} INFO - Output:
+[2026-05-24T16:38:09.248+0000] {subprocess.py:93} INFO - [0m16:38:09  Running with dbt=1.12.0-b1
+[2026-05-24T16:38:09.478+0000] {subprocess.py:93} INFO - [0m16:38:09  Registered adapter: postgres=1.10.0
+[2026-05-24T16:38:09.814+0000] {subprocess.py:93} INFO - [0m16:38:09  Found 2 models, 12 data tests, 591 macros
+[2026-05-24T16:38:09.818+0000] {subprocess.py:93} INFO - [0m16:38:09
+[2026-05-24T16:38:09.819+0000] {subprocess.py:93} INFO - [0m16:38:09  Concurrency: 2 threads (target='dev')
+[2026-05-24T16:38:09.820+0000] {subprocess.py:93} INFO - [0m16:38:09
+[2026-05-24T16:38:09.906+0000] {subprocess.py:93} INFO - [0m16:38:09  1 of 12 START test dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0  [RUN]
+[2026-05-24T16:38:09.907+0000] {subprocess.py:93} INFO - [0m16:38:09  2 of 12 START test dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0  [RUN]
+[2026-05-24T16:38:09.973+0000] {subprocess.py:93} INFO - [0m16:38:09  1 of 12 PASS dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0  [[32mPASS[0m in 0.06s]
+[2026-05-24T16:38:09.975+0000] {subprocess.py:93} INFO - [0m16:38:09  2 of 12 PASS dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0 .. [[32mPASS[0m in 0.07s]
+[2026-05-24T16:38:09.977+0000] {subprocess.py:93} INFO - [0m16:38:09  3 of 12 START test dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0  [RUN]
+[2026-05-24T16:38:09.979+0000] {subprocess.py:93} INFO - [0m16:38:09  4 of 12 START test not_null_mart_district_social_index_burden_rank ............. [RUN]
+[2026-05-24T16:38:10.016+0000] {subprocess.py:93} INFO - [0m16:38:10  4 of 12 PASS not_null_mart_district_social_index_burden_rank ................... [[32mPASS[0m in 0.04s]
+[2026-05-24T16:38:10.019+0000] {subprocess.py:93} INFO - [0m16:38:10  3 of 12 PASS dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0 ... [[32mPASS[0m in 0.04s]
+[2026-05-24T16:38:10.023+0000] {subprocess.py:93} INFO - [0m16:38:10  5 of 12 START test not_null_mart_district_social_index_district ................ [RUN]
+[2026-05-24T16:38:10.023+0000] {subprocess.py:93} INFO - [0m16:38:10  6 of 12 START test not_null_mart_district_social_index_social_burden_index ..... [RUN]
+[2026-05-24T16:38:10.063+0000] {subprocess.py:93} INFO - [0m16:38:10  5 of 12 PASS not_null_mart_district_social_index_district ...................... [[32mPASS[0m in 0.04s]
+[2026-05-24T16:38:10.065+0000] {subprocess.py:93} INFO - [0m16:38:10  6 of 12 PASS not_null_mart_district_social_index_social_burden_index ........... [[32mPASS[0m in 0.04s]
+[2026-05-24T16:38:10.069+0000] {subprocess.py:93} INFO - [0m16:38:10  7 of 12 START test not_null_stg_berlin_mss_child_poverty_rate .................. [RUN]
+[2026-05-24T16:38:10.070+0000] {subprocess.py:93} INFO - [0m16:38:10  8 of 12 START test not_null_stg_berlin_mss_district ............................ [RUN]
+[2026-05-24T16:38:10.109+0000] {subprocess.py:93} INFO - [0m16:38:10  7 of 12 PASS not_null_stg_berlin_mss_child_poverty_rate ........................ [[32mPASS[0m in 0.04s]
+[2026-05-24T16:38:10.110+0000] {subprocess.py:93} INFO - [0m16:38:10  8 of 12 PASS not_null_stg_berlin_mss_district .................................. [[32mPASS[0m in 0.04s]
+[2026-05-24T16:38:10.113+0000] {subprocess.py:93} INFO - [0m16:38:10  9 of 12 START test not_null_stg_berlin_mss_lor_key ............................. [RUN]
+[2026-05-24T16:38:10.114+0000] {subprocess.py:93} INFO - [0m16:38:10  10 of 12 START test not_null_stg_berlin_mss_unemployment_rate .................. [RUN]
+[2026-05-24T16:38:10.146+0000] {subprocess.py:93} INFO - [0m16:38:10  9 of 12 PASS not_null_stg_berlin_mss_lor_key ................................... [[32mPASS[0m in 0.03s]
+[2026-05-24T16:38:10.147+0000] {subprocess.py:93} INFO - [0m16:38:10  10 of 12 PASS not_null_stg_berlin_mss_unemployment_rate ........................ [[32mPASS[0m in 0.03s]
+[2026-05-24T16:38:10.150+0000] {subprocess.py:93} INFO - [0m16:38:10  11 of 12 START test unique_mart_district_social_index_district ................. [RUN]
+[2026-05-24T16:38:10.150+0000] {subprocess.py:93} INFO - [0m16:38:10  12 of 12 START test unique_stg_berlin_mss_lor_key .............................. [RUN]
+[2026-05-24T16:38:10.232+0000] {subprocess.py:93} INFO - [0m16:38:10  11 of 12 PASS unique_mart_district_social_index_district ....................... [[32mPASS[0m in 0.08s]
+[2026-05-24T16:38:10.235+0000] {subprocess.py:93} INFO - [0m16:38:10  12 of 12 PASS unique_stg_berlin_mss_lor_key .................................... [[32mPASS[0m in 0.08s]
+[2026-05-24T16:38:10.249+0000] {subprocess.py:93} INFO - [0m16:38:10
+[2026-05-24T16:38:10.250+0000] {subprocess.py:93} INFO - [0m16:38:10  Finished running 12 data tests in 0 hours 0 minutes and 0.43 seconds (0.43s).
+[2026-05-24T16:38:10.304+0000] {subprocess.py:93} INFO - [0m16:38:10
+[2026-05-24T16:38:10.305+0000] {subprocess.py:93} INFO - [0m16:38:10  [32mCompleted successfully[0m
+[2026-05-24T16:38:10.306+0000] {subprocess.py:93} INFO - [0m16:38:10
+[2026-05-24T16:38:10.306+0000] {subprocess.py:93} INFO - [0m16:38:10  Done. PASS=12 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=12
+[2026-05-24T16:38:11.078+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-05-24T16:38:11.081+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-24T16:38:11.114+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=berlin_social_atlas, task_id=dbt_test, run_id=manual__2026-05-24T16:32:45.299292+00:00, execution_date=20260524T163245, start_date=20260524T163807, end_date=20260524T163811
+[2026-05-24T16:38:11.160+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-05-24T16:38:11.180+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-24T16:38:11.181+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,23 @@
+[2026-05-24T16:35:47.554+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-24T16:35:47.637+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: berlin_social_atlas.ingest_berlin_mss manual__2026-05-24T16:35:47.025496+00:00 [queued]>
+[2026-05-24T16:35:47.652+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: berlin_social_atlas.ingest_berlin_mss manual__2026-05-24T16:35:47.025496+00:00 [queued]>
+[2026-05-24T16:35:47.653+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-05-24T16:35:47.676+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_berlin_mss> on 2026-05-24 16:35:47.025496+00:00
+[2026-05-24T16:35:47.688+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=356) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-24T16:35:47.687+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'berlin_social_atlas', 'ingest_berlin_mss', 'manual__2026-05-24T16:35:47.025496+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/berlin_mss_pipeline.py', '--cfg-path', '/tmp/tmpgn_q6q7h']
+[2026-05-24T16:35:47.691+0000] {standard_task_runner.py:91} INFO - Job 10: Subtask ingest_berlin_mss
+[2026-05-24T16:35:47.691+0000] {standard_task_runner.py:63} INFO - Started process 357 to run task
+[2026-05-24T16:35:47.781+0000] {task_command.py:426} INFO - Running <TaskInstance: berlin_social_atlas.ingest_berlin_mss manual__2026-05-24T16:35:47.025496+00:00 [running]> on host f33b7c2b37fa
+[2026-05-24T16:35:47.873+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='berlin_social_atlas' AIRFLOW_CTX_TASK_ID='ingest_berlin_mss' AIRFLOW_CTX_EXECUTION_DATE='2026-05-24T16:35:47.025496+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-24T16:35:47.025496+00:00'
+[2026-05-24T16:35:47.874+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-24T16:35:47.887+0000] {fetch_berlin_mss.py:54} INFO - Fetching WFS: https://gdi.berlin.de/services/wfs/mss_2025
+[2026-05-24T16:35:49.945+0000] {fetch_berlin_mss.py:68} INFO - Parsing 542 features
+[2026-05-24T16:35:50.213+0000] {fetch_berlin_mss.py:111} INFO - Cleared existing year=2025 records
+[2026-05-24T16:35:50.648+0000] {fetch_berlin_mss.py:147} INFO - Loaded 542 records into raw.berlin_mss
+[2026-05-24T16:35:50.649+0000] {fetch_berlin_mss.py:156} INFO - Ingestion complete.
+[2026-05-24T16:35:50.659+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-24T16:35:50.659+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-24T16:35:50.668+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=berlin_social_atlas, task_id=ingest_berlin_mss, run_id=manual__2026-05-24T16:35:47.025496+00:00, execution_date=20260524T163547, start_date=20260524T163547, end_date=20260524T163550
+[2026-05-24T16:35:50.690+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-05-24T16:35:50.710+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-24T16:35:50.711+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

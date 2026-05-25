@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: stg_berlin_mss
+    description: "Bereinigter Staging-Layer der Berliner MSS-Sozialdaten (LOR-Ebene)"
+    columns:
+      - name: lor_key
+        description: "LOR-Schlüssel (eindeutig pro Planungsraum)"
+        tests:
+          - not_null
+          - unique
+      - name: district
+        tests:
+          - not_null
+      - name: unemployment_rate
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 1
+      - name: child_poverty_rate
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 1
+
+  - name: mart_district_social_index
+    description: "Bezirks-Aggregation mit sozialem Belastungsindex"
+    columns:
+      - name: district
+        tests:
+          - not_null
+          - unique
+      - name: social_burden_index
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 1
+      - name: burden_rank
+        tests:
+          - not_null

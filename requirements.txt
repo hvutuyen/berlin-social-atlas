@@ -1,0 +1,7 @@
+requests==2.31.0
+psycopg2-binary==2.9.9
+geopandas==0.14.4
+sqlalchemy==2.0.30
+dbt-postgres==1.8.0
+dbt-utils==1.2.0
+apache-airflow==2.9.1
