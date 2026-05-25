@@ -4189,3 +4189,659 @@ having count(*) > 1
 [0m16:41:14.055278 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb955f650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb89fba70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb89fbe30>]}
 [0m16:41:14.055558 [debug] [MainThread]: Flushing usage events
 [0m16:41:14.543143 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:46:16.403897 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8842e060>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8a18f8c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8842c5c0>]}
+
+
+============================== 16:46:16.408412 | 859d0b87-9c0a-47fb-a908-d9da474aea4a ==============================
+[0m16:46:16.408412 [info ] [MainThread]: Running with dbt=1.12.0-b1
+[0m16:46:16.409149 [debug] [MainThread]: running dbt with arguments {'empty': 'None', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'debug': 'False', 'quiet': 'False', 'version_check': 'True', 'profiles_dir': '.', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'invocation_command': 'dbt test --profiles-dir .', 'log_format': 'default', 'write_json': 'True', 'introspect': 'True', 'no_print': 'None', 'warn_error': 'None', 'static_parser': 'True', 'log_path': '/opt/airflow/dbt/logs', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'use_colors': 'True'}
+[0m16:46:16.516443 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '859d0b87-9c0a-47fb-a908-d9da474aea4a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8a146e10>]}
+[0m16:46:16.554148 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '859d0b87-9c0a-47fb-a908-d9da474aea4a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff887c0470>]}
+[0m16:46:16.555161 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m16:46:16.602669 [debug] [MainThread]: checksum: 6927119f54d004ffd263b094d7bce97ebbdd1c00adedbbdda88e818b9bb3a551, vars: {}, profile: berlin_social_atlas, target: dev, version: 1.12.0b1
+[0m16:46:16.692078 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m16:46:16.692469 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m16:46:16.692722 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m16:46:16.713182 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '859d0b87-9c0a-47fb-a908-d9da474aea4a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff86e53650>]}
+[0m16:46:16.768204 [debug] [MainThread]: Wrote artifact WritableManifest to /opt/airflow/dbt/target/manifest.json
+[0m16:46:16.769905 [debug] [MainThread]: Wrote artifact SemanticManifest to /opt/airflow/dbt/target/semantic_manifest.json
+[0m16:46:16.784803 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '859d0b87-9c0a-47fb-a908-d9da474aea4a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8696f8f0>]}
+[0m16:46:16.785231 [info ] [MainThread]: Found 2 models, 12 data tests, 591 macros
+[0m16:46:16.785744 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '859d0b87-9c0a-47fb-a908-d9da474aea4a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff86d75820>]}
+[0m16:46:16.787121 [info ] [MainThread]: 
+[0m16:46:16.787618 [info ] [MainThread]: Concurrency: 2 threads (target='dev')
+[0m16:46:16.787964 [info ] [MainThread]: 
+[0m16:46:16.788472 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m16:46:16.791603 [debug] [ThreadPool]: Acquiring new postgres connection 'list_airflow_staging'
+[0m16:46:16.813030 [debug] [ThreadPool]: Using postgres connection "list_airflow_staging"
+[0m16:46:16.813480 [debug] [ThreadPool]: On list_airflow_staging: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "connection_name": "list_airflow_staging"} */
+select
+      'airflow' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'staging'
+    union all
+    select
+      'airflow' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'staging'
+    union all
+    select
+      'airflow' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'staging'
+  
+[0m16:46:16.813798 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:46:16.822192 [debug] [ThreadPool]: SQL status: SELECT 2 in 0.008 seconds
+[0m16:46:16.823307 [debug] [ThreadPool]: On list_airflow_staging: ROLLBACK
+[0m16:46:16.823818 [debug] [ThreadPool]: On list_airflow_staging: Close
+[0m16:46:16.827605 [debug] [MainThread]: Using postgres connection "master"
+[0m16:46:16.828068 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m16:46:16.828434 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m16:46:16.834128 [debug] [MainThread]: SQL status: SELECT 1 in 0.006 seconds
+[0m16:46:16.835039 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '859d0b87-9c0a-47fb-a908-d9da474aea4a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff867f5970>]}
+[0m16:46:16.835422 [debug] [MainThread]: On master: ROLLBACK
+[0m16:46:16.835800 [debug] [MainThread]: On master: COMMIT
+[0m16:46:16.836075 [debug] [MainThread]: Using postgres connection "master"
+[0m16:46:16.836359 [debug] [MainThread]: On master: COMMIT
+[0m16:46:16.836754 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m16:46:16.837028 [debug] [MainThread]: On master: Close
+[0m16:46:16.839625 [debug] [Thread-1 (]: Began running node test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da
+[0m16:46:16.840098 [debug] [Thread-2 (]: Began running node test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634
+[0m16:46:16.840576 [info ] [Thread-1 (]: 1 of 12 START test dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0  [RUN]
+[0m16:46:16.841157 [info ] [Thread-2 (]: 2 of 12 START test dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0  [RUN]
+[0m16:46:16.841826 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_airflow_staging, now test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da)
+[0m16:46:16.842207 [debug] [Thread-2 (]: Acquiring new postgres connection 'test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634'
+[0m16:46:16.842529 [debug] [Thread-1 (]: Began compiling node test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da
+[0m16:46:16.842844 [debug] [Thread-2 (]: Began compiling node test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634
+[0m16:46:16.851419 [debug] [Thread-1 (]: Writing injected SQL for node "test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da"
+[0m16:46:16.853730 [debug] [Thread-2 (]: Writing injected SQL for node "test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634"
+[0m16:46:16.855392 [debug] [Thread-1 (]: Began executing node test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da
+[0m16:46:16.855640 [debug] [Thread-2 (]: Began executing node test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634
+[0m16:46:16.867408 [debug] [Thread-1 (]: Writing runtime sql for node "test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da"
+[0m16:46:16.868945 [debug] [Thread-2 (]: Writing runtime sql for node "test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634"
+[0m16:46:16.869901 [debug] [Thread-1 (]: Using postgres connection "test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da"
+[0m16:46:16.870219 [debug] [Thread-1 (]: On test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "node_id": "test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+
+with meet_condition as(
+  select *
+  from "airflow"."staging"."mart_district_social_index"
+),
+
+validation_errors as (
+  select *
+  from meet_condition
+  where
+    -- never true, defaults to an empty result set. Exists to ensure any combo of the `or` clauses below succeeds
+    1 = 2
+    -- records with a value >= min_value are permitted. The `not` flips this to find records that don't meet the rule.
+    or not social_burden_index >= 0
+    -- records with a value <= max_value are permitted. The `not` flips this to find records that don't meet the rule.
+    or not social_burden_index <= 1
+)
+
+select *
+from validation_errors
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:46:16.870483 [debug] [Thread-2 (]: Using postgres connection "test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634"
+[0m16:46:16.870768 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:46:16.871102 [debug] [Thread-2 (]: On test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "node_id": "test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+
+with meet_condition as(
+  select *
+  from "airflow"."staging"."stg_berlin_mss"
+),
+
+validation_errors as (
+  select *
+  from meet_condition
+  where
+    -- never true, defaults to an empty result set. Exists to ensure any combo of the `or` clauses below succeeds
+    1 = 2
+    -- records with a value >= min_value are permitted. The `not` flips this to find records that don't meet the rule.
+    or not child_poverty_rate >= 0
+    -- records with a value <= max_value are permitted. The `not` flips this to find records that don't meet the rule.
+    or not child_poverty_rate <= 1
+)
+
+select *
+from validation_errors
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:46:16.871616 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m16:46:16.876829 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.006 seconds
+[0m16:46:16.879732 [debug] [Thread-1 (]: On test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da: ROLLBACK
+[0m16:46:16.879983 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.008 seconds
+[0m16:46:16.880362 [debug] [Thread-1 (]: On test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da: Close
+[0m16:46:16.881155 [debug] [Thread-2 (]: On test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634: ROLLBACK
+[0m16:46:16.881829 [error] [Thread-1 (]: 1 of 12 FAIL 6 dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0  [[31mFAIL 6[0m in 0.04s]
+[0m16:46:16.882433 [debug] [Thread-2 (]: On test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634: Close
+[0m16:46:16.882773 [debug] [Thread-1 (]: Finished running node test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da
+[0m16:46:16.883213 [error] [Thread-2 (]: 2 of 12 FAIL 7 dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0  [[31mFAIL 7[0m in 0.04s]
+[0m16:46:16.883645 [debug] [Thread-1 (]: Began running node test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695
+[0m16:46:16.884091 [debug] [Thread-2 (]: Finished running node test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634
+[0m16:46:16.884423 [info ] [Thread-1 (]: 3 of 12 START test dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0  [RUN]
+[0m16:46:16.884885 [debug] [Thread-2 (]: Began running node test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd
+[0m16:46:16.885223 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.berlin_social_atlas.dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0.bf57a762da, now test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695)
+[0m16:46:16.885569 [info ] [Thread-2 (]: 4 of 12 START test not_null_mart_district_social_index_burden_rank ............. [RUN]
+[0m16:46:16.885971 [debug] [Thread-1 (]: Began compiling node test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695
+[0m16:46:16.886286 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0.7d93ad6634, now test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd)
+[0m16:46:16.888749 [debug] [Thread-1 (]: Writing injected SQL for node "test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695"
+[0m16:46:16.889106 [debug] [Thread-2 (]: Began compiling node test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd
+[0m16:46:16.892993 [debug] [Thread-2 (]: Writing injected SQL for node "test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd"
+[0m16:46:16.893614 [debug] [Thread-1 (]: Began executing node test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695
+[0m16:46:16.893963 [debug] [Thread-2 (]: Began executing node test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd
+[0m16:46:16.895231 [debug] [Thread-1 (]: Writing runtime sql for node "test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695"
+[0m16:46:16.896663 [debug] [Thread-2 (]: Writing runtime sql for node "test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd"
+[0m16:46:16.897718 [debug] [Thread-1 (]: Using postgres connection "test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695"
+[0m16:46:16.898000 [debug] [Thread-2 (]: Using postgres connection "test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd"
+[0m16:46:16.898225 [debug] [Thread-1 (]: On test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "node_id": "test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+
+with meet_condition as(
+  select *
+  from "airflow"."staging"."stg_berlin_mss"
+),
+
+validation_errors as (
+  select *
+  from meet_condition
+  where
+    -- never true, defaults to an empty result set. Exists to ensure any combo of the `or` clauses below succeeds
+    1 = 2
+    -- records with a value >= min_value are permitted. The `not` flips this to find records that don't meet the rule.
+    or not unemployment_rate >= 0
+    -- records with a value <= max_value are permitted. The `not` flips this to find records that don't meet the rule.
+    or not unemployment_rate <= 1
+)
+
+select *
+from validation_errors
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:46:16.898558 [debug] [Thread-2 (]: On test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "node_id": "test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select burden_rank
+from "airflow"."staging"."mart_district_social_index"
+where burden_rank is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:46:16.898880 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:46:16.899149 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m16:46:16.903465 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.004 seconds
+[0m16:46:16.904568 [debug] [Thread-2 (]: On test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd: ROLLBACK
+[0m16:46:16.904797 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.006 seconds
+[0m16:46:16.905166 [debug] [Thread-2 (]: On test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd: Close
+[0m16:46:16.905900 [debug] [Thread-1 (]: On test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695: ROLLBACK
+[0m16:46:16.906388 [info ] [Thread-2 (]: 4 of 12 PASS not_null_mart_district_social_index_burden_rank ................... [[32mPASS[0m in 0.02s]
+[0m16:46:16.906952 [debug] [Thread-1 (]: On test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695: Close
+[0m16:46:16.907262 [debug] [Thread-2 (]: Finished running node test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd
+[0m16:46:16.907714 [error] [Thread-1 (]: 3 of 12 FAIL 7 dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0 . [[31mFAIL 7[0m in 0.02s]
+[0m16:46:16.908174 [debug] [Thread-2 (]: Began running node test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54
+[0m16:46:16.908653 [debug] [Thread-1 (]: Finished running node test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695
+[0m16:46:16.908992 [info ] [Thread-2 (]: 5 of 12 START test not_null_mart_district_social_index_district ................ [RUN]
+[0m16:46:16.909446 [debug] [Thread-1 (]: Began running node test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba
+[0m16:46:16.909791 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.berlin_social_atlas.not_null_mart_district_social_index_burden_rank.560800dccd, now test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54)
+[0m16:46:16.910101 [info ] [Thread-1 (]: 6 of 12 START test not_null_mart_district_social_index_social_burden_index ..... [RUN]
+[0m16:46:16.910510 [debug] [Thread-2 (]: Began compiling node test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54
+[0m16:46:16.910825 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.berlin_social_atlas.dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.026f926695, now test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba)
+[0m16:46:16.913364 [debug] [Thread-2 (]: Writing injected SQL for node "test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54"
+[0m16:46:16.913769 [debug] [Thread-1 (]: Began compiling node test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba
+[0m16:46:16.916343 [debug] [Thread-1 (]: Writing injected SQL for node "test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba"
+[0m16:46:16.916690 [debug] [Thread-2 (]: Began executing node test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54
+[0m16:46:16.918176 [debug] [Thread-2 (]: Writing runtime sql for node "test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54"
+[0m16:46:16.918579 [debug] [Thread-1 (]: Began executing node test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba
+[0m16:46:16.920810 [debug] [Thread-1 (]: Writing runtime sql for node "test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba"
+[0m16:46:16.921148 [debug] [Thread-2 (]: Using postgres connection "test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54"
+[0m16:46:16.921706 [debug] [Thread-2 (]: On test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "node_id": "test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select district
+from "airflow"."staging"."mart_district_social_index"
+where district is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:46:16.922011 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m16:46:16.922289 [debug] [Thread-1 (]: Using postgres connection "test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba"
+[0m16:46:16.922690 [debug] [Thread-1 (]: On test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "node_id": "test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select social_burden_index
+from "airflow"."staging"."mart_district_social_index"
+where social_burden_index is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:46:16.922990 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:46:16.926730 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.005 seconds
+[0m16:46:16.927025 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.004 seconds
+[0m16:46:16.928128 [debug] [Thread-2 (]: On test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54: ROLLBACK
+[0m16:46:16.929019 [debug] [Thread-1 (]: On test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba: ROLLBACK
+[0m16:46:16.929456 [debug] [Thread-2 (]: On test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54: Close
+[0m16:46:16.929743 [debug] [Thread-1 (]: On test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba: Close
+[0m16:46:16.930127 [info ] [Thread-2 (]: 5 of 12 PASS not_null_mart_district_social_index_district ...................... [[32mPASS[0m in 0.02s]
+[0m16:46:16.930728 [info ] [Thread-1 (]: 6 of 12 PASS not_null_mart_district_social_index_social_burden_index ........... [[32mPASS[0m in 0.02s]
+[0m16:46:16.931179 [debug] [Thread-2 (]: Finished running node test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54
+[0m16:46:16.931551 [debug] [Thread-1 (]: Finished running node test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba
+[0m16:46:16.931913 [debug] [Thread-2 (]: Began running node test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e
+[0m16:46:16.932241 [debug] [Thread-1 (]: Began running node test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd
+[0m16:46:16.932588 [info ] [Thread-2 (]: 7 of 12 START test not_null_stg_berlin_mss_child_poverty_rate .................. [RUN]
+[0m16:46:16.932965 [info ] [Thread-1 (]: 8 of 12 START test not_null_stg_berlin_mss_district ............................ [RUN]
+[0m16:46:16.933297 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.berlin_social_atlas.not_null_mart_district_social_index_district.78c0952b54, now test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e)
+[0m16:46:16.933618 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.berlin_social_atlas.not_null_mart_district_social_index_social_burden_index.af1b7a1dba, now test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd)
+[0m16:46:16.933921 [debug] [Thread-2 (]: Began compiling node test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e
+[0m16:46:16.934205 [debug] [Thread-1 (]: Began compiling node test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd
+[0m16:46:16.936655 [debug] [Thread-2 (]: Writing injected SQL for node "test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e"
+[0m16:46:16.938794 [debug] [Thread-1 (]: Writing injected SQL for node "test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd"
+[0m16:46:16.940197 [debug] [Thread-2 (]: Began executing node test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e
+[0m16:46:16.940487 [debug] [Thread-1 (]: Began executing node test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd
+[0m16:46:16.941769 [debug] [Thread-2 (]: Writing runtime sql for node "test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e"
+[0m16:46:16.943213 [debug] [Thread-1 (]: Writing runtime sql for node "test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd"
+[0m16:46:16.944027 [debug] [Thread-2 (]: Using postgres connection "test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e"
+[0m16:46:16.944335 [debug] [Thread-1 (]: Using postgres connection "test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd"
+[0m16:46:16.944579 [debug] [Thread-2 (]: On test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "node_id": "test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select child_poverty_rate
+from "airflow"."staging"."stg_berlin_mss"
+where child_poverty_rate is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:46:16.944892 [debug] [Thread-1 (]: On test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "node_id": "test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select district
+from "airflow"."staging"."stg_berlin_mss"
+where district is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:46:16.945192 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m16:46:16.945475 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:46:16.950543 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.005 seconds
+[0m16:46:16.950815 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.005 seconds
+[0m16:46:16.951915 [debug] [Thread-2 (]: On test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e: ROLLBACK
+[0m16:46:16.952809 [debug] [Thread-1 (]: On test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd: ROLLBACK
+[0m16:46:16.953219 [debug] [Thread-2 (]: On test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e: Close
+[0m16:46:16.953503 [debug] [Thread-1 (]: On test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd: Close
+[0m16:46:16.953931 [info ] [Thread-2 (]: 7 of 12 PASS not_null_stg_berlin_mss_child_poverty_rate ........................ [[32mPASS[0m in 0.02s]
+[0m16:46:16.954550 [info ] [Thread-1 (]: 8 of 12 PASS not_null_stg_berlin_mss_district .................................. [[32mPASS[0m in 0.02s]
+[0m16:46:16.955017 [debug] [Thread-2 (]: Finished running node test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e
+[0m16:46:16.955463 [debug] [Thread-1 (]: Finished running node test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd
+[0m16:46:16.955824 [debug] [Thread-2 (]: Began running node test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec
+[0m16:46:16.956151 [debug] [Thread-1 (]: Began running node test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887
+[0m16:46:16.956477 [info ] [Thread-2 (]: 9 of 12 START test not_null_stg_berlin_mss_lor_key ............................. [RUN]
+[0m16:46:16.956898 [info ] [Thread-1 (]: 10 of 12 START test not_null_stg_berlin_mss_unemployment_rate .................. [RUN]
+[0m16:46:16.957281 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.berlin_social_atlas.not_null_stg_berlin_mss_child_poverty_rate.c9ed3fcc7e, now test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec)
+[0m16:46:16.957607 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.berlin_social_atlas.not_null_stg_berlin_mss_district.529d7706bd, now test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887)
+[0m16:46:16.957955 [debug] [Thread-2 (]: Began compiling node test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec
+[0m16:46:16.958266 [debug] [Thread-1 (]: Began compiling node test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887
+[0m16:46:16.960779 [debug] [Thread-2 (]: Writing injected SQL for node "test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec"
+[0m16:46:16.962945 [debug] [Thread-1 (]: Writing injected SQL for node "test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887"
+[0m16:46:16.963862 [debug] [Thread-2 (]: Began executing node test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec
+[0m16:46:16.964179 [debug] [Thread-1 (]: Began executing node test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887
+[0m16:46:16.965465 [debug] [Thread-2 (]: Writing runtime sql for node "test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec"
+[0m16:46:16.966859 [debug] [Thread-1 (]: Writing runtime sql for node "test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887"
+[0m16:46:16.967658 [debug] [Thread-2 (]: Using postgres connection "test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec"
+[0m16:46:16.967952 [debug] [Thread-1 (]: Using postgres connection "test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887"
+[0m16:46:16.968180 [debug] [Thread-2 (]: On test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "node_id": "test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select lor_key
+from "airflow"."staging"."stg_berlin_mss"
+where lor_key is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:46:16.968498 [debug] [Thread-1 (]: On test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "node_id": "test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select unemployment_rate
+from "airflow"."staging"."stg_berlin_mss"
+where unemployment_rate is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:46:16.968824 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m16:46:16.969099 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:46:16.974340 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.005 seconds
+[0m16:46:16.974648 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.006 seconds
+[0m16:46:16.975942 [debug] [Thread-1 (]: On test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887: ROLLBACK
+[0m16:46:16.976837 [debug] [Thread-2 (]: On test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec: ROLLBACK
+[0m16:46:16.977292 [debug] [Thread-1 (]: On test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887: Close
+[0m16:46:16.977506 [debug] [Thread-2 (]: On test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec: Close
+[0m16:46:16.977948 [info ] [Thread-1 (]: 10 of 12 PASS not_null_stg_berlin_mss_unemployment_rate ........................ [[32mPASS[0m in 0.02s]
+[0m16:46:16.978531 [info ] [Thread-2 (]: 9 of 12 PASS not_null_stg_berlin_mss_lor_key ................................... [[32mPASS[0m in 0.02s]
+[0m16:46:16.979003 [debug] [Thread-1 (]: Finished running node test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887
+[0m16:46:16.979432 [debug] [Thread-2 (]: Finished running node test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec
+[0m16:46:16.979776 [debug] [Thread-1 (]: Began running node test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270
+[0m16:46:16.980104 [debug] [Thread-2 (]: Began running node test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b
+[0m16:46:16.980433 [info ] [Thread-1 (]: 11 of 12 START test unique_mart_district_social_index_district ................. [RUN]
+[0m16:46:16.980829 [info ] [Thread-2 (]: 12 of 12 START test unique_stg_berlin_mss_lor_key .............................. [RUN]
+[0m16:46:16.981169 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.berlin_social_atlas.not_null_stg_berlin_mss_unemployment_rate.ba478eb887, now test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270)
+[0m16:46:16.981483 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.berlin_social_atlas.not_null_stg_berlin_mss_lor_key.4a67e7a5ec, now test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b)
+[0m16:46:16.981789 [debug] [Thread-1 (]: Began compiling node test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270
+[0m16:46:16.982083 [debug] [Thread-2 (]: Began compiling node test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b
+[0m16:46:16.986589 [debug] [Thread-1 (]: Writing injected SQL for node "test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270"
+[0m16:46:17.024848 [debug] [Thread-2 (]: Writing injected SQL for node "test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b"
+[0m16:46:17.025943 [debug] [Thread-1 (]: Began executing node test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270
+[0m16:46:17.026273 [debug] [Thread-2 (]: Began executing node test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b
+[0m16:46:17.027621 [debug] [Thread-1 (]: Writing runtime sql for node "test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270"
+[0m16:46:17.028945 [debug] [Thread-2 (]: Writing runtime sql for node "test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b"
+[0m16:46:17.029925 [debug] [Thread-1 (]: Using postgres connection "test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270"
+[0m16:46:17.030226 [debug] [Thread-2 (]: Using postgres connection "test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b"
+[0m16:46:17.030460 [debug] [Thread-1 (]: On test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "node_id": "test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    district as unique_field,
+    count(*) as n_records
+
+from "airflow"."staging"."mart_district_social_index"
+where district is not null
+group by district
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:46:17.030791 [debug] [Thread-2 (]: On test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b: /* {"app": "dbt", "dbt_version": "1.12.0b1", "profile_name": "berlin_social_atlas", "target_name": "dev", "node_id": "test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    lor_key as unique_field,
+    count(*) as n_records
+
+from "airflow"."staging"."stg_berlin_mss"
+where lor_key is not null
+group by lor_key
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:46:17.031088 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:46:17.031364 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m16:46:17.035982 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.005 seconds
+[0m16:46:17.037461 [debug] [Thread-1 (]: On test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270: ROLLBACK
+[0m16:46:17.037801 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.006 seconds
+[0m16:46:17.038679 [debug] [Thread-1 (]: On test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270: Close
+[0m16:46:17.039956 [debug] [Thread-2 (]: On test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b: ROLLBACK
+[0m16:46:17.040753 [info ] [Thread-1 (]: 11 of 12 PASS unique_mart_district_social_index_district ....................... [[32mPASS[0m in 0.06s]
+[0m16:46:17.041511 [debug] [Thread-1 (]: Finished running node test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270
+[0m16:46:17.041768 [debug] [Thread-2 (]: On test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b: Close
+[0m16:46:17.042544 [info ] [Thread-2 (]: 12 of 12 PASS unique_stg_berlin_mss_lor_key .................................... [[32mPASS[0m in 0.06s]
+[0m16:46:17.043155 [debug] [Thread-2 (]: Finished running node test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b
+[0m16:46:17.044225 [debug] [MainThread]: On master: COMMIT
+[0m16:46:17.044589 [debug] [MainThread]: Using postgres connection "master"
+[0m16:46:17.044857 [debug] [MainThread]: On master: COMMIT
+[0m16:46:17.045121 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m16:46:17.048963 [debug] [MainThread]: SQL status: COMMIT in 0.004 seconds
+[0m16:46:17.049287 [debug] [MainThread]: On master: Close
+[0m16:46:17.049646 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m16:46:17.049924 [debug] [MainThread]: Connection 'test.berlin_social_atlas.unique_mart_district_social_index_district.b2702af270' was properly closed.
+[0m16:46:17.050201 [debug] [MainThread]: Connection 'test.berlin_social_atlas.unique_stg_berlin_mss_lor_key.652316829b' was properly closed.
+[0m16:46:17.050531 [info ] [MainThread]: 
+[0m16:46:17.051018 [info ] [MainThread]: Finished running 12 data tests in 0 hours 0 minutes and 0.26 seconds (0.26s).
+[0m16:46:17.052274 [debug] [MainThread]: Command end result
+[0m16:46:17.080008 [debug] [MainThread]: Wrote artifact WritableManifest to /opt/airflow/dbt/target/manifest.json
+[0m16:46:17.081772 [debug] [MainThread]: Wrote artifact SemanticManifest to /opt/airflow/dbt/target/semantic_manifest.json
+[0m16:46:17.086579 [debug] [MainThread]: Wrote artifact RunExecutionResult to /opt/airflow/dbt/target/run_results.json
+[0m16:46:17.086870 [info ] [MainThread]: 
+[0m16:46:17.087385 [info ] [MainThread]: [31mCompleted with 3 errors, 0 partial successes, and 0 warnings:[0m
+[0m16:46:17.087767 [info ] [MainThread]: 
+[0m16:46:17.088114 [error] [MainThread]: [[31mERROR[0m]: in test dbt_utils_accepted_range_mart_district_social_index_social_burden_index__1__0 (models/schema.yml)
+[0m16:46:17.088407 [error] [MainThread]:   Got 6 results, configured to fail if != 0
+[0m16:46:17.088627 [info ] [MainThread]: 
+[0m16:46:17.088884 [info ] [MainThread]:   compiled code at target/compiled/berlin_social_atlas/models/schema.yml/dbt_utils_accepted_range_mart__c40381e4114926b5ecec0f4cf49b390d.sql
+[0m16:46:17.089137 [info ] [MainThread]: 
+[0m16:46:17.089505 [error] [MainThread]: [[31mERROR[0m]: in test dbt_utils_accepted_range_stg_berlin_mss_child_poverty_rate__1__0 (models/schema.yml)
+[0m16:46:17.089848 [error] [MainThread]:   Got 7 results, configured to fail if != 0
+[0m16:46:17.090126 [info ] [MainThread]: 
+[0m16:46:17.090734 [info ] [MainThread]:   compiled code at target/compiled/berlin_social_atlas/models/schema.yml/dbt_utils_accepted_range_stg_b_0e26a061964ab414180cd99a3277b7f6.sql
+[0m16:46:17.091058 [info ] [MainThread]: 
+[0m16:46:17.091483 [error] [MainThread]: [[31mERROR[0m]: in test dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0 (models/schema.yml)
+[0m16:46:17.091944 [error] [MainThread]:   Got 7 results, configured to fail if != 0
+[0m16:46:17.092253 [info ] [MainThread]: 
+[0m16:46:17.092582 [info ] [MainThread]:   compiled code at target/compiled/berlin_social_atlas/models/schema.yml/dbt_utils_accepted_range_stg_berlin_mss_unemployment_rate__1__0.sql
+[0m16:46:17.092885 [info ] [MainThread]: 
+[0m16:46:17.093217 [info ] [MainThread]: Done. PASS=9 WARN=0 ERROR=3 SKIP=0 NO-OP=0 TOTAL=12
+[0m16:46:17.093978 [debug] [MainThread]: Resource report: {"command_name": "test", "command_success": false, "command_wall_clock_time": 0.7262938, "process_in_blocks": "0", "process_kernel_time": 0.190586, "process_mem_max_rss": "125192", "process_out_blocks": "2769", "process_user_time": 1.686035}
+[0m16:46:17.094352 [debug] [MainThread]: Command `dbt test` failed at 16:46:17.094296 after 0.73 seconds
+[0m16:46:17.094676 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff89614110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff85e6e3f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff85e6d340>]}
+[0m16:46:17.094986 [debug] [MainThread]: Flushing usage events
+[0m16:46:17.613778 [debug] [MainThread]: An error was encountered while trying to flush usage events

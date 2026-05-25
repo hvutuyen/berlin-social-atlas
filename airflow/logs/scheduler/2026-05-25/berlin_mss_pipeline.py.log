@@ -1475,3 +1475,52 @@
 [2026-05-25T16:44:28.868+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:44:28.868+0000] {dag.py:3096} INFO - Sync 1 DAGs
 [2026-05-25T16:44:28.883+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:44:28.883+0000] {dag.py:3954} INFO - Setting next_dagrun for berlin_social_atlas to 2026-01-01 06:00:00+00:00, run_after=2027-01-01 06:00:00+00:00
 [2026-05-25T16:44:28.892+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/berlin_mss_pipeline.py took 0.086 seconds
+[2026-05-25T16:44:59.111+0000] {processor.py:161} INFO - Started process (PID=1755) to work on /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:44:59.112+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/berlin_mss_pipeline.py for tasks to queue
+[2026-05-25T16:44:59.116+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:44:59.115+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:44:59.132+0000] {processor.py:840} INFO - DAG(s) 'berlin_social_atlas' retrieved from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:44:59.157+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:44:59.157+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-05-25T16:44:59.171+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:44:59.171+0000] {dag.py:3954} INFO - Setting next_dagrun for berlin_social_atlas to 2026-01-01 06:00:00+00:00, run_after=2027-01-01 06:00:00+00:00
+[2026-05-25T16:44:59.180+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/berlin_mss_pipeline.py took 0.083 seconds
+[2026-05-25T16:45:29.360+0000] {processor.py:161} INFO - Started process (PID=1760) to work on /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:45:29.361+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/berlin_mss_pipeline.py for tasks to queue
+[2026-05-25T16:45:29.363+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:45:29.363+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:45:29.376+0000] {processor.py:840} INFO - DAG(s) 'berlin_social_atlas' retrieved from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:45:29.408+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:45:29.408+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-05-25T16:45:29.423+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:45:29.423+0000] {dag.py:3954} INFO - Setting next_dagrun for berlin_social_atlas to 2026-01-01 06:00:00+00:00, run_after=2027-01-01 06:00:00+00:00
+[2026-05-25T16:45:29.431+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/berlin_mss_pipeline.py took 0.076 seconds
+[2026-05-25T16:45:59.668+0000] {processor.py:161} INFO - Started process (PID=1765) to work on /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:45:59.669+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/berlin_mss_pipeline.py for tasks to queue
+[2026-05-25T16:45:59.672+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:45:59.671+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:45:59.692+0000] {processor.py:840} INFO - DAG(s) 'berlin_social_atlas' retrieved from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:45:59.728+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:45:59.728+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-05-25T16:45:59.743+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:45:59.743+0000] {dag.py:3954} INFO - Setting next_dagrun for berlin_social_atlas to 2026-01-01 06:00:00+00:00, run_after=2027-01-01 06:00:00+00:00
+[2026-05-25T16:45:59.753+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/berlin_mss_pipeline.py took 0.095 seconds
+[2026-05-25T16:46:29.981+0000] {processor.py:161} INFO - Started process (PID=1781) to work on /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:46:29.983+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/berlin_mss_pipeline.py for tasks to queue
+[2026-05-25T16:46:29.985+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:46:29.985+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:46:29.997+0000] {processor.py:840} INFO - DAG(s) 'berlin_social_atlas' retrieved from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:46:30.020+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:46:30.020+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-05-25T16:46:30.033+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:46:30.033+0000] {dag.py:3954} INFO - Setting next_dagrun for berlin_social_atlas to 2026-01-01 06:00:00+00:00, run_after=2027-01-01 06:00:00+00:00
+[2026-05-25T16:46:30.042+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/berlin_mss_pipeline.py took 0.068 seconds
+[2026-05-25T16:47:00.316+0000] {processor.py:161} INFO - Started process (PID=1786) to work on /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:47:00.317+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/berlin_mss_pipeline.py for tasks to queue
+[2026-05-25T16:47:00.321+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:47:00.320+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:47:00.341+0000] {processor.py:840} INFO - DAG(s) 'berlin_social_atlas' retrieved from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:47:00.370+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:47:00.370+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-05-25T16:47:00.384+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:47:00.384+0000] {dag.py:3954} INFO - Setting next_dagrun for berlin_social_atlas to 2026-01-01 06:00:00+00:00, run_after=2027-01-01 06:00:00+00:00
+[2026-05-25T16:47:00.393+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/berlin_mss_pipeline.py took 0.088 seconds
+[2026-05-25T16:47:30.618+0000] {processor.py:161} INFO - Started process (PID=1791) to work on /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:47:30.620+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/berlin_mss_pipeline.py for tasks to queue
+[2026-05-25T16:47:30.622+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:47:30.621+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:47:30.634+0000] {processor.py:840} INFO - DAG(s) 'berlin_social_atlas' retrieved from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:47:30.656+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:47:30.655+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-05-25T16:47:30.669+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:47:30.669+0000] {dag.py:3954} INFO - Setting next_dagrun for berlin_social_atlas to 2026-01-01 06:00:00+00:00, run_after=2027-01-01 06:00:00+00:00
+[2026-05-25T16:47:30.678+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/berlin_mss_pipeline.py took 0.067 seconds
+[2026-05-25T16:48:00.964+0000] {processor.py:161} INFO - Started process (PID=1796) to work on /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:48:00.966+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/berlin_mss_pipeline.py for tasks to queue
+[2026-05-25T16:48:00.969+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:48:00.968+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:48:00.988+0000] {processor.py:840} INFO - DAG(s) 'berlin_social_atlas' retrieved from /opt/airflow/dags/berlin_mss_pipeline.py
+[2026-05-25T16:48:01.016+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:48:01.016+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-05-25T16:48:01.031+0000] {logging_mixin.py:188} INFO - [2026-05-25T16:48:01.030+0000] {dag.py:3954} INFO - Setting next_dagrun for berlin_social_atlas to 2026-01-01 06:00:00+00:00, run_after=2027-01-01 06:00:00+00:00
+[2026-05-25T16:48:01.040+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/berlin_mss_pipeline.py took 0.086 seconds

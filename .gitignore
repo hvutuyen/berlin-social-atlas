@@ -1,0 +1,16 @@
+# Airflow
+airflow/logs/
+airflow/plugins/
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/package-lock.yml
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# Docker
+postgres_data/
