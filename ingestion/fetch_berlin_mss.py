@@ -3,29 +3,17 @@ ingestion/fetch_berlin_mss.py
 
 Lädt Berliner MSS-Sozialdaten (Monitoring Soziale Stadtentwicklung)
 vom Berlin Open Data WFS-Endpoint und schreibt sie in PostgreSQL raw schema.
+Unterstützt historische Jahrgänge: 2021, 2023, 2025
 """
 
 import requests
 import json
 import logging
-from datetime import datetime
 from typing import Optional
 import psycopg2
-from psycopg2.extras import execute_values
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
-
-# WFS Endpoint – MSS 2025 (Berlin Open Data)
-WFS_BASE = "https://gdi.berlin.de/services/wfs/mss_2025"
-WFS_PARAMS = {
-    "SERVICE": "WFS",
-    "VERSION": "2.0.0",
-    "REQUEST": "GetFeature",
-    "TYPENAMES": "mss_2025:mss2025_indexind_542",
-    "OUTPUTFORMAT": "application/json",
-    "SRSNAME": "EPSG:4326",
-}
 
 DB_CONFIG = {
     "host": "postgres",
@@ -35,55 +23,68 @@ DB_CONFIG = {
     "password": "airflow",
 }
 
-# Feldmapping WFS → DB (anpassen nach echtem GetCapabilities-Response)
-FIELD_MAP = {
-    "bezirk":             "bez_id",
-    "lor_name":           "plr_name",
-    "lor_key":            "plr_id",
-    "unemployment_rate":  "s1",    # Arbeitslosigkeit
-    "child_poverty_rate": "s2",    # Kinderarmut  
-    "transfer_rate":      "s3",    # Transferbezug
-    "youth_unemployment": "s4",    # Kinder in Alleinerziehenden-HH
-}
-
-YEAR = 2025
+AVAILABLE_YEARS = [2021, 2023, 2025]
+FEATURE_COUNT = 542
 
 
-def fetch_wfs(url: str, params: dict) -> Optional[dict]:
-    """WFS GetFeature Request → GeoJSON dict."""
-    log.info(f"Fetching WFS: {url}")
+def wfs_url(year: int) -> str:
+    return f"https://gdi.berlin.de/services/wfs/mss_{year}"
+
+
+def wfs_typename(year: int) -> str:
+    return f"mss_{year}:mss{year}_indexind_{FEATURE_COUNT}"
+
+
+def normalize_props(props: dict) -> dict:
+    """Normalisiert Feldnamen über Jahrgänge hinweg.
+    2021 hat d2_x/s2_x statt d2/s2."""
+    return {
+        k.replace("_x", ""): v
+        for k, v in props.items()
+    }
+
+
+def fetch_wfs(year: int) -> Optional[dict]:
+    url = wfs_url(year)
+    params = {
+        "SERVICE": "WFS",
+        "VERSION": "2.0.0",
+        "REQUEST": "GetFeature",
+        "TYPENAMES": wfs_typename(year),
+        "OUTPUTFORMAT": "application/json",
+        "SRSNAME": "EPSG:4326",
+    }
+    log.info(f"Fetching WFS {year}: {url}")
     try:
         resp = requests.get(url, params=params, timeout=30)
         resp.raise_for_status()
         return resp.json()
     except requests.RequestException as e:
-        log.error(f"WFS fetch failed: {e}")
+        log.error(f"WFS fetch failed ({year}): {e}")
         raise
 
 
-def parse_features(geojson: dict) -> list[dict]:
-    """Extrahiert relevante Felder aus GeoJSON FeatureCollection."""
-    records = []
+def parse_features(geojson: dict, year: int) -> list[dict]:
     features = geojson.get("features", [])
-    log.info(f"Parsing {len(features)} features")
+    log.info(f"Parsing {len(features)} features for {year}")
+    records = []
 
     for feat in features:
-        props = feat.get("properties", {})
+        props = normalize_props(feat.get("properties", {}))
         geom = feat.get("geometry")
 
-        record = {
-            "bezirk":            props.get(FIELD_MAP["bezirk"]),
-            "lor_name":          props.get(FIELD_MAP["lor_name"]),
-            "lor_key":           props.get(FIELD_MAP["lor_key"]),
-            "year":              YEAR,
-            "unemployment_rate": _safe_float(props.get(FIELD_MAP["unemployment_rate"])),
-            "child_poverty_rate": _safe_float(props.get(FIELD_MAP["child_poverty_rate"])),
-            "transfer_rate":     _safe_float(props.get(FIELD_MAP["transfer_rate"])),
-            "youth_unemployment": _safe_float(props.get(FIELD_MAP["youth_unemployment"])),
-            "geometry":          json.dumps(geom) if geom else None,
-            "source_url":        WFS_BASE,
-        }
-        records.append(record)
+        records.append({
+            "bezirk":             props.get("bez_id"),
+            "lor_name":           props.get("plr_name"),
+            "lor_key":            props.get("plr_id"),
+            "year":               year,
+            "unemployment_rate":  _safe_float(props.get("s1")),
+            "child_poverty_rate": _safe_float(props.get("s2")),
+            "transfer_rate":      _safe_float(props.get("s3")),
+            "youth_unemployment": _safe_float(props.get("s4")),
+            "geometry":           json.dumps(geom) if geom else None,
+            "source_url":         wfs_url(year),
+        })
 
     return records
 
@@ -95,34 +96,17 @@ def _safe_float(val) -> Optional[float]:
         return None
 
 
-def load_to_postgres(records: list[dict]) -> None:
-    """Schreibt Records in raw.berlin_mss (upsert auf lor_key + year)."""
+def load_to_postgres(records: list[dict], year: int) -> None:
     if not records:
-        log.warning("No records to load.")
+        log.warning(f"No records to load for {year}.")
         return
 
     conn = psycopg2.connect(**DB_CONFIG)
     try:
         with conn.cursor() as cur:
-            # Löscht bestehende Daten für dieses Jahr (idempotent)
-            cur.execute(
-                "DELETE FROM raw.berlin_mss WHERE year = %s", (YEAR,)
-            )
-            log.info(f"Cleared existing year={YEAR} records")
+            cur.execute("DELETE FROM raw.berlin_mss WHERE year = %s", (year,))
+            log.info(f"Cleared existing year={year} records")
 
-            rows = [
-                (
-                    r["bezirk"], r["lor_name"], r["lor_key"], r["year"],
-                    r["unemployment_rate"], r["child_poverty_rate"],
-                    r["transfer_rate"], r["youth_unemployment"],
-                    f"ST_SetSRID(ST_GeomFromGeoJSON('{r['geometry']}'), 4326)"
-                    if r["geometry"] else None,
-                    r["source_url"],
-                )
-                for r in records
-            ]
-
-            # Geometrie-Insert via ST_GeomFromGeoJSON
             for r in records:
                 cur.execute(
                     """
@@ -143,16 +127,19 @@ def load_to_postgres(records: list[dict]) -> None:
                     ),
                 )
 
-            conn.commit()
-            log.info(f"Loaded {len(records)} records into raw.berlin_mss")
+        conn.commit()
+        log.info(f"Loaded {len(records)} records into raw.berlin_mss")
     finally:
         conn.close()
 
 
-def run():
-    geojson = fetch_wfs(WFS_BASE, WFS_PARAMS)
-    records = parse_features(geojson)
-    load_to_postgres(records)
+def run(years: list[int] = None) -> None:
+    years = years or AVAILABLE_YEARS
+    for year in years:
+        log.info(f"--- Processing year {year} ---")
+        geojson = fetch_wfs(year)
+        records = parse_features(geojson, year)
+        load_to_postgres(records, year)
     log.info("Ingestion complete.")
 
 
