@@ -1,0 +1,17 @@
+FROM apache/airflow:2.10.4
+
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+USER airflow
+RUN pip install --no-cache-dir \
+    requests \
+    geopandas \
+    psycopg2-binary \
+    sqlalchemy \
+    dbt-postgres
+
+RUN sed -i 's/saved_session.expiry <= datetime.utcnow()/saved_session.expiry.replace(tzinfo=None) <= datetime.utcnow()/g' \
+    /home/airflow/.local/lib/python3.12/site-packages/flask_session/sessions.py
