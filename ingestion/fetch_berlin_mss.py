@@ -91,7 +91,8 @@ def parse_features(geojson: dict, year: int) -> list[dict]:
 
 def _safe_float(val) -> Optional[float]:
     try:
-        return float(val) if val is not None else None
+        f = float(val) if val is not None else None
+        return None if f is not None and f < -999 else f
     except (TypeError, ValueError):
         return None
 
