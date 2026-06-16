@@ -17,15 +17,20 @@ district_agg as (
         round(avg(transfer_rate)::numeric, 4)           as avg_transfer_rate,
         round(avg(youth_unemployment_rate)::numeric, 4) as avg_youth_unemployment_rate,
 
-        -- Einfacher sozialer Belastungsindex: Mittelwert aller 4 Indikatoren
-        round(
-            (
-                avg(unemployment_rate) +
-                avg(child_poverty_rate) +
-                avg(transfer_rate) +
-                avg(youth_unemployment_rate)
-            ) / 4.0, 4
-        )                                               as social_burden_index
+    -- Dynamischer Durchschnitt nur über nicht-NULL Werte, da s2-Daten (Kinderarmut) für 2021 fehlen
+    round(
+        (
+            coalesce(avg(unemployment_rate), 0) +
+            coalesce(avg(child_poverty_rate), 0) +
+            coalesce(avg(transfer_rate), 0) +
+            coalesce(avg(youth_unemployment_rate), 0)
+        ) / nullif(
+            (case when avg(unemployment_rate) is not null then 1 else 0 end +
+            case when avg(child_poverty_rate) is not null then 1 else 0 end +
+            case when avg(transfer_rate) is not null then 1 else 0 end +
+            case when avg(youth_unemployment_rate) is not null then 1 else 0 end),
+        0), 4
+    ) as social_burden_index
 
     from stg
     group by district, year
